@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+static_cdn/
 *.py[cod]
 *$py.class
 
