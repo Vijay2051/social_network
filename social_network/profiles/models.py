@@ -26,6 +26,12 @@ class Profile(models.Model):
     def __str__(self):
         return f"{self.user.username}-{self.created.strftime('%d-%m-%Y')}"
 
+    def get_friends(self):
+        return self.friends.all()
+
+    def get_friends_no(self):
+        return self.friends.all().count()
+
     def save(self, *args, **kwargs):
         ex = False
         if self.first_name and self.last_name:
@@ -49,8 +55,7 @@ class RelationShip(models.Model):
         *** relationship between the profiles created 
     """
 
-    sender = models.ForeignKey(
-        Profile, on_delete=models.CASCADE, related_name="sender")
+    sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="sender")
     reciever = models.ForeignKey(
         Profile, on_delete=models.CASCADE, related_name="reciever"
     )
